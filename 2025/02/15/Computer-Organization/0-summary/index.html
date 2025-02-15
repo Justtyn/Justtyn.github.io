@@ -1,0 +1,563 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机组成原理-概述 | Justyn's Blog</title><meta name="author" content="Justyn"><meta name="copyright" content="Justyn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机组成原理-概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理-概述">
+<meta property="og:url" content="https://justtyn.github.io/2025/02/15/Computer-Organization/0-summary/index.html">
+<meta property="og:site_name" content="Justyn&#39;s Blog">
+<meta property="og:description" content="计算机组成原理-概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://justtyn.github.io/image/loginBackground1.jpg">
+<meta property="article:published_time" content="2025-02-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-14T16:00:00.000Z">
+<meta property="article:author" content="Justyn">
+<meta property="article:tag" content="考研">
+<meta property="article:tag" content="概述">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://justtyn.github.io/image/loginBackground1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计算机组成原理-概述",
+  "url": "https://justtyn.github.io/2025/02/15/Computer-Organization/0-summary/",
+  "image": "https://justtyn.github.io/image/loginBackground1.jpg",
+  "datePublished": "2025-02-14T16:00:00.000Z",
+  "dateModified": "2025-02-14T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Justyn",
+      "url": "https://justtyn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://justtyn.github.io/2025/02/15/Computer-Organization/0-summary/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成原理-概述',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/image/loginBackground1.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/IMG_2189.JPG" onerror="this.onerror=null;this.src='/image/404.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/loginBackground1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/image/IMG_2189.JPG" alt="Logo"><span class="site-name">Justyn's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机组成原理-概述</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理-概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-14T16:00:00.000Z" title="更新于 2025-02-15 00:00:00">2025-02-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/">考研</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E6%A6%82%E8%BF%B0/">概述</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>软件基于数据结构，数据结构又基于计算机，计算机由操作系统运行，计算机的硬件基于计算机组成原理，计算机之间通过计算机网络连接，这就是四个的关系。计算机组成原理是关于计算机硬件的最底层知识。</p>
+<ul>
+<li>计算机系统&#x3D;硬件+软件。</li>
+<li>软件分为：<ul>
+<li>系统软件：用来管理整个计算机系统，如操作系统、数据库管理系统（$DBMS$）、标准程程序库、网络软件、语言处理程序、服务程序。</li>
+<li>应用软件：按任务需要编制成的各种程序。</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机的发展"><a href="#计算机的发展" class="headerlink" title="计算机的发展"></a>计算机的发展</h2><h3 id="硬件的发展"><a href="#硬件的发展" class="headerlink" title="硬件的发展"></a>硬件的发展</h3><table>
+<thead>
+<tr>
+<th align="center">发展阶段</th>
+<th align="center">时间</th>
+<th align="center">逻辑元件</th>
+<th align="center">速度（次&#x2F;秒）</th>
+<th align="center">内存</th>
+<th align="center">外存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第一代</td>
+<td align="center">1946-1957</td>
+<td align="center">电子管</td>
+<td align="center">几千-几方</td>
+<td align="center">汞延迟线、磁鼓</td>
+<td align="center">穿孔卡片、纸带</td>
+</tr>
+<tr>
+<td align="center">第二代</td>
+<td align="center">1958-1964</td>
+<td align="center">晶体管</td>
+<td align="center">几万-几干万</td>
+<td align="center">磁芯存储器</td>
+<td align="center">磁带</td>
+</tr>
+<tr>
+<td align="center">第三代</td>
+<td align="center">1964-1971</td>
+<td align="center">中小规模集成电路</td>
+<td align="center">几十万-几百万</td>
+<td align="center">半导体存储器</td>
+<td align="center">磁带、磁盘</td>
+</tr>
+<tr>
+<td align="center">第四代</td>
+<td align="center">1972-现在</td>
+<td align="center">大规模、超大规模集成电路</td>
+<td align="center">上千万-万亿</td>
+<td align="center">半导体存储器</td>
+<td align="center">磁盘、磁带、光盘、半导体存储器</td>
+</tr>
+</tbody></table>
+<ul>
+<li>第一代使用纸带磁带编程。</li>
+<li>第二代出现了面向过程的程序设计语言$FORTRAN$，有了操作系统雏形。</li>
+<li>第三代主要用于科学计算等专业用途，高级语言快速发展，开始有了分时系统。</li>
+<li>第四代开始出现$CPU$、$PC$，如$Windows$、$MacOS$等。</li>
+</ul>
+<h3 id="软件的发展"><a href="#软件的发展" class="headerlink" title="软件的发展"></a>软件的发展</h3><ul>
+<li>机器语言：唯一可以被计算机识别和执行的语言。</li>
+<li>汇编语言：必须经过汇编程序的翻译。</li>
+<li>高级语言：转换为汇编程序或直接翻译为机器语言。</li>
+</ul>
+<h3 id="计算机的分类"><a href="#计算机的分类" class="headerlink" title="计算机的分类"></a>计算机的分类</h3><p>电子计算机分为：</p>
+<ul>
+<li>电子模拟计算机。</li>
+<li>电子数字计算机：<ul>
+<li>专用计算机。</li>
+<li>通用计算机：巨型机、大型机、中型机、小型机、微型机、单片机。</li>
+</ul>
+</li>
+</ul>
+<h2 id="计算机系统层次结构"><a href="#计算机系统层次结构" class="headerlink" title="计算机系统层次结构"></a>计算机系统层次结构</h2><h3 id="计算机结构"><a href="#计算机结构" class="headerlink" title="计算机结构"></a>计算机结构</h3><h4 id="冯诺伊曼结构"><a href="#冯诺伊曼结构" class="headerlink" title="冯诺伊曼结构"></a>冯诺伊曼结构</h4><ol>
+<li>计算机由五大部件组成：<ul>
+<li>输入设备：将信息转换成机器能识别的形式。</li>
+<li>存储器：存放数据和程序。</li>
+<li>运算器：算术运算和逻辑运算。</li>
+<li>控制器：协调其他部件与解析存储器中的程序或指令。</li>
+<li>输出设备：将结果转换为人类熟悉的形式。</li>
+</ul>
+</li>
+<li>指令和数据以同等地位存于存储器，可按地址寻访。</li>
+<li>指令和数据用二进制表示。</li>
+<li>指令由操作码（指令序列号，用来表示处理的指令）和地址码（操作数据存储的地址）组成。</li>
+<li>存储程序：指将指令以二进制代码的形式事先输入计算机的主存储器，然后按其在存储器中的首地址执行程序的第一条指令，以后就按该程序的规定顺序执行其他指令，直至程序执行结束。</li>
+<li>以运算器为中心：输入&#x2F;输出设备与存储器之间的数据传送通过运算器完成。</li>
+</ol>
+<h4 id="现代计算机结构"><a href="#现代计算机结构" class="headerlink" title="现代计算机结构"></a>现代计算机结构</h4><ol>
+<li>计算机由两个部分组成：<ul>
+<li>主机：<ul>
+<li>$CPU$：<ul>
+<li>运算器。</li>
+<li>控制器。</li>
+</ul>
+</li>
+<li>主存。</li>
+</ul>
+</li>
+<li>$I&#x2F;O$设备：<ul>
+<li>辅存。</li>
+<li>输入设备。</li>
+<li>输出设备。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>以存储器为中心。</li>
+</ol>
+<h3 id="硬件构成"><a href="#硬件构成" class="headerlink" title="硬件构成"></a>硬件构成</h3><h4 id="I-O设备"><a href="#I-O设备" class="headerlink" title="I&#x2F;O设备"></a>I&#x2F;O设备</h4><ul>
+<li>输入设备：将程序和数据以机器所能识别和接受的信息形式输入计算机。</li>
+<li>输出设备：将计算机处理的结果以人们所能接受的形式或其他系统所要求的信息形式输出</li>
+</ul>
+<h4 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h4><p>用于存放程序和数据。分为主存和辅存，$CPU$直接访问主存，只有调入主存才能被$CPU$访问。</p>
+<p>存储器结构：</p>
+<ul>
+<li>存储体：存储数据的主体，按地址存取。（相联存储器按内容访存）</li>
+<li>$MAR$：（$Memory,Address,Register$）存储地址寄存器，用于访存地址，经过存放地址译码后所选的存储单元。$MAR$位数反映存储单元个数的幂值，与$PC$（程序计数器）长度相等（因为都是指向内存地址），如$MAR$有$10$位，则有$2^{10}&#x3D;1024$个存储单元。</li>
+<li>$MDR$：（$Memory,Data,Register$）存储数据寄存器，用于暂存要从存储器中读或写的信息。$MDR$位数&#x3D;存储字长，一般为字节的二次幂的整数倍。（存储字长不等于数据字长，数据字长是数据总线一次性传输的信息位数）</li>
+<li>时序控制逻辑：产生存储器操作时所需的各种时序信号。</li>
+</ul>
+<p>存储器相关概念：</p>
+<ul>
+<li>现代$MAR$和$MDR$被划分进入了$CPU$。</li>
+<li>存储单元：每个存储单元存放一串二进制代码。</li>
+<li>存储字（$word$）：存储单元中二进制代码的组合，即一个存储元存放的数据。</li>
+<li>存储字长：存储单元中二进制代码的位数，为$1B$或字节的偶数倍。</li>
+<li>存储元：即存储二进制的电子元件，每个存储元可存储$1bit$。</li>
+</ul>
+<p>寄存器和高速缓冲寄存器$Cache$都集成在$CPU$上，离$CPU$越近速度越快，所以存取速度上寄存器&gt;$Cache$&gt;内存。</p>
+<p>$CPU$包括运算器和控制器，不包括存储器（存储器不同于寄存器）。</p>
+<h4 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h4><p>用于算术运算和逻辑运算。</p>
+<ul>
+<li>$ALU$：算术逻辑单元，是核心单元，通过内部复杂的电路实现算数运算、逻辑运算。</li>
+<li>$ACC$：累加器，用于存放操作数，或运算结果。</li>
+<li>$MQ$：乘商寄存器，在乘、除运算时，用于存放操作数或运算结果。</li>
+<li>$X$：操作数寄存器，通用的操作数寄存器，用于存放操作数。</li>
+<li>$PSW$：程序状态寄存器，也称标志寄存器，用于存放$ALU$运算得到的一些标志信息或处理机的状态信息，如结果是否溢出、有无产生进位或借位、结果是否为负等。</li>
+<li>还有变址寄存器（$IX$），主要用于存放存储单元在段内的偏移量，基址寄存器（$BR$），用来存放操作数或中间结果，以减少对存储器的访问次数的数据寄存器。这些都不一定具备。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">&nbsp;</th>
+<th align="center">加</th>
+<th align="center">减</th>
+<th align="center">乘</th>
+<th align="center">除</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ACC</td>
+<td align="center">被加数、和</td>
+<td align="center">被减数、差</td>
+<td align="center">乘积高位</td>
+<td align="center">被除数、余数</td>
+</tr>
+<tr>
+<td align="center">MQ</td>
+<td align="center">&nbsp;</td>
+<td align="center">&nbsp;</td>
+<td align="center">乘数、乘积低位</td>
+<td align="center">商</td>
+</tr>
+<tr>
+<td align="center">X</td>
+<td align="center">加数</td>
+<td align="center">减数</td>
+<td align="center">被乘数</td>
+<td align="center">除数</td>
+</tr>
+</tbody></table>
+<h4 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h4><ul>
+<li>$CU$：控制单元，分析指令，给出控制信号。</li>
+<li>$IR$：指令寄存器，存放当前执行的指令，内容来自主存的$MDR$。指令中操作码$OP(IR)$送到$CU$分析指令并发出各种微操作命令序列，地址码$Ad(IR)$送到$MAR$来取操作数。</li>
+<li>$PC$：程序计数器，存放下一条要指令地址，取指后自动加$1$（一条指令长度，不一定为$1$）以形成下一条指令地址的功能，与主存$MAR$有直接通路。</li>
+</ul>
+<h4 id="逻辑电路"><a href="#逻辑电路" class="headerlink" title="逻辑电路"></a>逻辑电路</h4><ul>
+<li>组合逻辑电路是具有一组输出和一组输入的非记忆性逻辑电路，它的基本特点是任何时刻的输出信号状态仅取决于该时刻各个输入信号状态的组合，而与电路在输入信号作用前的状态无关。组合电路不含存储信号的记忆单元，输出与输入之间无反馈通路，信号是单向传输的。</li>
+<li>时序逻辑电路中任意时刻的输出信号不仅和当时的输入信号有关，而且与电路原来的状态有关，这是时序逻辑电路在逻辑功能上的特点。因而时序逻辑电路必然包含存储记忆单元。</li>
+<li>组合逻辑电路没有统一的时钟控制，而时序逻辑电路则必须在时钟节拍下工作。</li>
+</ul>
+<h3 id="计算机工作过程"><a href="#计算机工作过程" class="headerlink" title="计算机工作过程"></a>计算机工作过程</h3><ol>
+<li>把程序和数据装入主存储器。</li>
+<li>将源程序转成可执行问题。</li>
+<li>从可执行文件的首地址开始逐条执行指令。</li>
+</ol>
+<p>完成一条指令：</p>
+<ol>
+<li>取指令$PC\rightarrow MAR\rightarrow M\rightarrow MDR\rightarrow IR$，并调用$PC$加$1$。</li>
+<li>将指令放入$IR$，并分析指令$OP(IR)\rightarrow CU$。</li>
+<li>调用$CU$协同执行指令$Ad(IR)\rightarrow MAR\rightarrow M\rightarrow MDR\rightarrow ACC$。</li>
+</ol>
+<p>其中翻译包括：预处理；编译；汇编；链接四个阶段。</p>
+<p>如何区分指令和数据：</p>
+<ul>
+<li>通过不同的时间段来区分指令和数据，即在取指令阶段（或取指微程序）取出的为指令，在执行指令阶段（或相应微程序）取出的即为数据。</li>
+<li>如果通过地址来源区分，由$PC$提供存储单元地址的取出的是指令，由指令地址码部分取出（提供存储单元地址或在指令中给出立即数）的是操作数。</li>
+</ul>
+<p>已知：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">2</span>,b=<span class="number">3</span>,c=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    y=a*b+c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据计算过程，$a$乘$b$再加上$c$，简单的高级语言背后的转换为机器语言就变成：</p>
+<p>指令地址：</p>
+<table>
+<thead>
+<tr>
+<th align="center">主存地址</th>
+<th align="center">操作码</th>
+<th align="center">地址码</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">000001</td>
+<td align="center">0000000101</td>
+<td align="center">取数a至ACC</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">000100</td>
+<td align="center">0000000110</td>
+<td align="center">乘b得ab，存于ACC中</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">000011</td>
+<td align="center">0000000111</td>
+<td align="center">加c得ab+c，存于ACC中</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">000010</td>
+<td align="center">0000001000</td>
+<td align="center">将ab+c，存于主存单元</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">000110</td>
+<td align="center">0000000000</td>
+<td align="center">停机</td>
+</tr>
+</tbody></table>
+<p>数据地址，基本的赋值操作：</p>
+<table>
+<thead>
+<tr>
+<th align="center">主存地址</th>
+<th align="center">数据值</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">5</td>
+<td align="center">0000000000000010</td>
+<td align="center">a&#x3D;2</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">0000000000000011</td>
+<td align="center">b&#x3D;3</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">0000000000000001</td>
+<td align="center">c&#x3D;1</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">0000000000000000</td>
+<td align="center">y&#x3D;0</td>
+</tr>
+</tbody></table>
+<p>分析指令地址对应的五条指令执行流程，基本流程是取指令-&gt;获取指令操作码-&gt;获取指令地址-&gt;根据指令地址取数-&gt;放入寄存器-&gt;计算：</p>
+<ol>
+<li>执行地址为$0$的指令，取指令$1$到$4$，分析指令$5$，执行指令$6$到$8$：<ol>
+<li>$(PC)&#x3D;0$：程序计数器指向主存地址为$0$的指令。</li>
+<li>$(PC)\rightarrow MAR$，$(MAR)&#x3D;0$：程序计数器将当前指向的指令地址通过系统总线传输给存储地址寄存器，从而存储地址寄存器的值现在置为$0$，表示它要处理的指令的主存地址为$0$。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000001,0000000101$：根据存储地址寄存器存储的地址$0$，在存储体中找到对应的指令$000001,0000000101$，并把它放入存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow IR$，$(IR)&#x3D;000001,0000000101$：将存储数据寄存器存储的指令放入指令寄存器中。</li>
+<li>$OP(IR)\rightarrow CU$：将指令寄存器的$000001$操作码传输给控制单元中，控制单元根据操作码知道这是“取数”的指令。</li>
+<li>$AD(IR)\rightarrow MAR$：控制单元根据取数指令，明白要从存储器中取出一个数，而取出的数的地址就是指令寄存器的$0000000101$，即取出存储地址为$5$的数据$a&#x3D;2$，将这个地址交给存储地址寄存器负责取出。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000000,0000000010&#x3D;2$：存储体根据存储地址寄存器的$0000000101$地址找到地址为$5$的数据$2$，并把$2$放到存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow ACC$，$(ACC)&#x3D;000000,0000000010&#x3D;2$：将存储数据寄存器的数据放入累加器中，完成$0$这条指令。</li>
+</ol>
+</li>
+<li>执行地址为$1$的指令，取指令$1$到$4$，分析指令$5$，执行指令$6$到$10$：<ol>
+<li>$(PC)+&#x3D;1，(PC)&#x3D;1$：程序计数器完成一条指令自动加一，从而现在指向地址为$1$的指令。</li>
+<li>$(PC)\rightarrow MAR，(MAR)&#x3D;1$：存储地址寄存器的值现在置为$1$，表示它要处理的指令的主存地址为$1$。</li>
+<li>$M(MAR)\rightarrow MDR，(MDR)&#x3D;000100,0000000110$：在存储体中找到地址为$1$的指令$000100,0000000110$，并把它放入存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow IR，(IR)&#x3D;000100,0000000110$：将存储数据寄存器存储的指令放入指令寄存器中。</li>
+<li>$OP(IR)\rightarrow CU$：将指令寄存器的$000100$操作码传输给控制单元中，控制单元根据操作码知道这是“乘法”的指令。</li>
+<li>$AD(IR)\rightarrow MAR$：控制单元根据乘法指令，在第一条指令中就得到了其中一个乘数a，现在要另一个乘数$b$，$b$的地址就是指令寄存器的$0000000110$，即取出存储地址为$6$的数据$b&#x3D;3$，将这个地址交给存储地址寄存器负责取出。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000000,0000000011&#x3D;3$：存储体根据存储地址寄存器的$0000000110$地址找到地址为$6$的数据$3$，并把$3$放到存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow MQ$，$(MQ)&#x3D;000000,0000000011&#x3D;3$：由于需要乘法操作，所以将存储数据寄存器的$3$放入乘商寄存器中。</li>
+<li>$(ACC)\rightarrow X$，$(X)&#x3D;2$：然后把$a$的值从累加器中放入通用寄存器中。（乘法操作中被乘数放入通用寄存器中，而乘数放入乘商寄存器中）。</li>
+<li>$(MQ)*(X)\rightarrow ACC$，$(ACC)&#x3D;6$：控制单元通知算术逻辑单元，通过算术逻辑单元对ab进行相乘后放入累加器中。如果乘积太大则需要乘商寄存器辅助存储。</li>
+</ol>
+</li>
+<li>执行地址为$2$的指令，取指令$1$到$4$，分析指令$5$，执行指令$6$到$9$：<ol>
+<li>$(PC)+&#x3D;1$，$(PC)&#x3D;2$：程序计数器完成一条指令自动加一，从而现在指向地址为2的指令。</li>
+<li>$(PC)\rightarrow MAR$，$(MAR)&#x3D;2$：存储地址寄存器的值现在置为$2$，表示它要处理的指令的主存地址为2。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000011,0000000111$：根据存储地址寄存器存储的地址$2$，在存储体中找到对应的指令$000011,0000000111$，并把它放入存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow IR$，$(IR)&#x3D;000011,0000000111$：将存储数据寄存器存储的指令放入指令寄存器中。</li>
+<li>$OP(IR)\rightarrow CU$：将指令寄存器的$000011$操作码传输给控制单元中，控制单元根据操作码知道这是“加法”的指令。</li>
+<li>$AD(IR)\rightarrow MAR$：控制单元根据取数指令，从存储器中取出指令寄存器的地址为$0000000111$的数，即取出存储地址为$7$的数据$c&#x3D;1$，将这个地址交给存储地址寄存器负责取出。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000000,0000000001&#x3D;1$：存储体根据存储地址寄存器的$0000000111$地址找到地址为$7$的数据$1$，并把$1$放到存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow X，X&#x3D;000000,0000000001&#x3D;1$：将存储数据寄存器的$1$放入通用寄存器中。（即加法操作中累加器存放被加数，通用寄存器中存放加数）。</li>
+<li>$(ACC)+(X)\rightarrow ACC$，$(ACC)&#x3D;7$：控制单元通知算术逻辑单元，将$ab$与$c$相加并存回累加器中。</li>
+</ol>
+</li>
+<li>执行地址为$3$的指令，取指令$1$到$4$，分析指令$5$，执行指令$6$到$8$：<ol>
+<li>$(PC)+&#x3D;1$，$(PC)&#x3D;3$：程序计数器完成一条指令自动加一，从而现在指向地址为3的指令。</li>
+<li>$(PC)\rightarrow MAR$，$(MAR)&#x3D;3$：存储地址寄存器的值现在置为3，表示它要处理的指令的主存地址为$3$。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000010,0000001000$：根据存储地址寄存器存储的地址$3$，在存储体中找到对应的指令$000010,0000001000$，并把它放入存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow IR$，$(IR)&#x3D;000010,0000001000$：将存储数据寄存器存储的指令放入指令寄存器中。</li>
+<li>$OP(IR)\rightarrow CU$：将指令寄存器的000010操作码传输给控制单元中，控制单元根据操作码知道这是“存数”的指令。</li>
+<li>$AD(IR)\rightarrow MAR$，$(MAR)&#x3D;0000001000&#x3D;8$：控制单元根据存数指令，根据存储的目的地址为$0000001000$。</li>
+<li>$(ACC)\rightarrow MDR$，$(MDR)&#x3D;7$：将运算的结果从累加器中传输为存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow$：地址为$8$的存储单元，$y&#x3D;7$：控制单元根据控制总线，将存储数据寄存器中的数据存储到存储地址寄存器中所指向的地址，所以地址码为$8$的$y$的值就变成了$7$。</li>
+</ol>
+</li>
+<li>执行地址为$4$的指令，取指令$1$到$4$，分析指令$5$，执行指令$6$：<ol>
+<li>$(PC)+&#x3D;1$，$(PC)&#x3D;4$：程序计数器完成一条指令自动加一，从而现在指向地址为$4$的指令。</li>
+<li>$(PC)\rightarrow MAR$，$(MAR)&#x3D;4$：存储地址寄存器的值现在置为$4$，表示它要处理的指令的主存地址为4。</li>
+<li>$M(MAR)\rightarrow MDR$，$(MDR)&#x3D;000110,0000000000$：根据存储地址寄存器存储的地址$4$，在存储体中找到对应的指令$000110,0000000000$，并把它放入存储数据寄存器中。</li>
+<li>$(MDR)\rightarrow IR$，$(IR)&#x3D;000110,000000000$：将存储数据寄存器存储的指令放入指令寄存器中。</li>
+<li>$OP(IR)\rightarrow CU$：将指令寄存器的$000110$操作码传输给控制单元中，控制单元根据操作码知道这是“停机”的指令。</li>
+<li>操作系统通过中断指令停止程序。</li>
+</ol>
+</li>
+</ol>
+<h3 id="计算机层次"><a href="#计算机层次" class="headerlink" title="计算机层次"></a>计算机层次</h3><ol>
+<li>微程序机器（微指令系统）：由硬件直接执行微指令。</li>
+<li>传统机器（用机器语言的机器）：执行二进制机器指令，微程序解释机器执行微指令。</li>
+<li>虚拟机器（操作系统机器）：由操作系统程序实现，向上提供“广义指令”即系统调用。也称为混合层。</li>
+<li>虚拟机器（汇编语言机器）：不能直接运行汇编语言，必须用汇编程序（汇编器）翻译成机器语言程序，所以是虚拟的。汇编语言与机器语言一一对应。</li>
+<li>虚拟机器（高级语言机器）：面向用户，必须用编译程序（编译器或解释器）翻译成汇编语言程序。</li>
+</ol>
+<ul>
+<li>翻译程序：是指把高级语言源程序转换成机器语言程序（目标代码）的软件。包括编译程序和解释程序。</li>
+<li>编译程序：将高级语言编写的源程序全部语句一次全部翻译成目标机器语言程序，而后再执行机器语言程序（只需翻译一次）。如$C$和$CPP$。</li>
+<li>解释程序：将源程序的一条语句翻译成对应于机器语言的语句，并立即执行。紧接着再翻译下一句（每次执行都要翻译），所以不会形成目标程序文件。如$JS$和$Python$。</li>
+<li>对于$Java$既可以编译也可以解释。</li>
+</ul>
+<h2 id="计算机性能指标"><a href="#计算机性能指标" class="headerlink" title="计算机性能指标"></a>计算机性能指标</h2><h3 id="主存储器"><a href="#主存储器" class="headerlink" title="主存储器"></a>主存储器</h3><ul>
+<li>$MAR$位数反映内存（而不是外存）单元的个数（最多支持多少个，如果超过了则$MAR$也无法寻址到，等同于没用），反映计算机处理能力和并行能力。</li>
+<li>$MDR$位数&#x3D;存储字长&#x3D;每个存储单元的大小，反映计算机一次性处理的数据大小。</li>
+<li>总容量&#x3D;存储单元个数×存储字长。单位为$bit$。</li>
+<li>如$MAR$为$32$位，$MDR$为$8$位，总容量&#x3D;$2^{32}\times8\div8&#x3D;3^{32}Byte$，所以为$4GB$。</li>
+</ul>
+<h3 id="中央处理器"><a href="#中央处理器" class="headerlink" title="中央处理器"></a>中央处理器</h3><ul>
+<li>$CPU$主频：$CPU$内数字脉冲信号振荡的频率。单位为赫兹。</li>
+<li>$CPU$时钟周期：$CPU$主频（时钟主频）&#x3D;$1\div CPU$时钟周期。一个时钟多少秒。单位为纳秒或微秒。</li>
+<li>$CPI$（$Clock,cycle,Per,Instruction$）：执行一条指令所需的时钟周期数。</li>
+<li>执行一条指令的耗时&#x3D; $CPI\times CPU$时钟周期。</li>
+<li>$CPU$执行时间（整个程序的耗时）&#x3D;$CPU$时钟周期数÷主频&#x3D;(指令条数×$CPI$)÷主频。</li>
+<li>$IPS$（$Instructions,Per,Second$）：每秒执行多少条指令，$IPS$&#x3D;主频÷平均$CPI$。也可以得到$MIPS$即每秒执行多少百万条指令。由于每个机器有不同指令集，所以使用此进行性能比较有缺陷。</li>
+<li>指令周期：一条指令需要多少秒，为$1&#x2F;IPS$。</li>
+<li>$FLOPS$（$Floating-point,Operations,Per,Second$）：每秒执行多少次浮点运算。因此有$MFLOPS$、$GFLOPS$、$TFLOPS$、$EFLOPS$、$ZFLOPS$分别代表每秒$10^6$、$10^9$、$10^{12}$、$10^{15}$、$10^{18}$、$10^{21}$次浮点运算</li>
+</ul>
+<h3 id="系统整体"><a href="#系统整体" class="headerlink" title="系统整体"></a>系统整体</h3><ul>
+<li>数据通路带宽：数据总线一次所能并行传送信息的位数（各硬件部件通过数据总线传输数据）。</li>
+<li>吞吐量：指系统在单位时间内处理请求的数量。它取决于信息能多快地输入内存，$CPU$能多快地取指令，数据能多快地从内存取出或存入，以及所得结果能多快地从内存送给一台外部设备。这些步骤中的每一步都关系到主存，因此，系统吞吐量主要取决于主存的存取周期。</li>
+<li>响应时间：指从用户向计算机发送一个请求，到系统对该请求做出响应并获得它所需要的结果的等待时间。通常包括$CPU$时间（运行一个程序所花费的时间）与等待时间（用于磁盘访问、存储器访问、$I&#x2F;O$操作、操作系统开销等时间）。</li>
+<li>基准程序是用来测量机算机处理速度的一种实用程序，以便于被测量的计算机性能可以与运行相向程序的其它计算机性能进行比较。但是也存在缺陷，因为基准程序的性能可能与某一段代码密切相关从而对此进行特别优化。</li>
+</ul>
+<h3 id="专业术语"><a href="#专业术语" class="headerlink" title="专业术语"></a>专业术语</h3><ul>
+<li>系列机。具有基本相同的体系结构，使用相同基本指令系统的多个不同型号的计算机组成的一个产品系列。其特征就是指令系统向后兼容。</li>
+<li>兼容。指计算机软件或硬件的通用性，即使用或运行在某个型号的计算机系统中的硬件&#x2F;软件也能应用于另一个型号的计算机系统时，称这两台计算机在硬件或软件上存在兼容性。</li>
+<li>软件可移植性。指把使用在某个系列计算机中的软件直接或进行很少的修改就能运行在另一个系列计算机中的可能性。</li>
+<li>固件。将程序固定在$ROM$中组成的部件称为固件。固件是一种具有软件特性的硬件，固件的性能指标介于硬件与软件之间，吸收了软&#x2F;硬件各自的优点，其执行速度快于软件，灵活性优于硬件，是软&#x2F;硬件结合的产物。例如，目前操作系统已实现了部分固化（把软件永恒地存储于只读存储器中）。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://justtyn.github.io/">Justyn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://justtyn.github.io/2025/02/15/Computer-Organization/0-summary/">https://justtyn.github.io/2025/02/15/Computer-Organization/0-summary/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://justtyn.github.io" target="_blank">Justyn's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%80%83%E7%A0%94/">考研</a><a class="post-meta__tags" href="/tags/%E6%A6%82%E8%BF%B0/">概述</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div><div class="post-share"><div class="social-share" data-image="/image/loginBackground1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/15/Computer-Network/5-application-layer-ex/" title="计算机网络-应用层-习题"><img class="cover" src="/image/loginBackground1.jpg" onerror="onerror=null;src='/image/404.png'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机网络-应用层-习题</div></div><div class="info-2"><div class="info-item-1">应用层习题网络应用模型C&#x2F;S模型例题 下面关于客户&#x2F;服务器模型的描述，()存在错误。 Ⅰ.客户端必须提前知道服务器的地址，而服务器则不需要提前知道客户端的地址 Ⅱ.客户端主要实现如何显示信息与收集用户的输入，而服务器主要实现数据的处理 Ⅲ.浏览器显示的内容来自服务器 Ⅳ.客户端是请求方，即使连接建立后，服务器也不能主动发送数据 $A.$Ⅰ、Ⅳ $B.$Ⅲ、Ⅳ $C.$只有Ⅳ $D.$只有Ⅲ 解：$C$。在连接未建立前，服务器在某一个端口上监听。客户端是连接的请求方，客户端必须事先知道服务器的地址才能发出连接请求，而服务器则从客户端发来的数据包中获取客户端的地址。一旦连接建立，服务器就能响应客户端请求的内容，服务器也能主动发送数据给客户端，用于一些消息的通知，如一些错误的通知。所以只有ⅠⅣ错误。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/2-storage-system-ex/" title="计算机组成原理-存储系统-习题"><img class="cover" src="/image/loginBackground1.jpg" onerror="onerror=null;src='/image/404.png'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">计算机组成原理-存储系统-习题</div></div><div class="info-2"><div class="info-item-1">存储系统习题存储器概念存储器层次化结构例题 下列关于多级存储系统的说法中，正确的有()。Ⅰ.多级存储系统是为了降低存储成本Ⅱ.虚拟存储器中主存和辅存之间的数据调动对任何程序员是透明的Ⅲ.$CPU$只能与$Cache$直接交换信息，$CPU$与主存交换信息也需要经过$Cache$ $A.$仅Ⅰ $B.$仅Ⅰ和Ⅱ $C.$Ⅰ、Ⅱ和Ⅲ $D.$仅Ⅱ 解：$A$。主存和辅存之间的数据调动是由硬件和操作系统共同完成的，仅对应用级程序员透明。$CPU$与主存可直接交换信息。 半导体随机存储器SRAM和DRAMDRAM的刷新例题 一个$1K\times4$位的动态$RAM$芯片，刷新周期为$2ms$，若其内部结构排列成$64\times64$形式，且存取周期为$0.1\mu...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/15/Computer-Organization/0-summary-ex/" title="计算机组成原理-概述-习题"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-概述-习题</div></div><div class="info-2"><div class="info-item-1">概述习题计算机的发展例题 只有当程序执行时才将源程序翻译成机器语言，并且一次只能翻译一行语句，边翻译边执行的是()程序，把汇编语言源程序转变为机器语言程序的过程是()。 Ⅰ.编译 Ⅱ.目标 Ⅲ.汇编 Ⅳ.解释 $A.$Ⅰ、Ⅱ $B.$Ⅳ、Ⅱ $C.$Ⅳ、Ⅰ $D.$Ⅳ、Ⅲ 解：$D$。解释程序的特点是翻译一句执行一句，边翻译边执行；由高级语言转化为汇编语言的过程称为编译，把汇编语言源程序翻译成机器语言程序的过程称为汇编。 计算机系统层次结构例题 以下说法错误的是()。 $A.$硬盘是外部设备 $B.$软件的功能与硬件的功能在逻辑上是等效的 $C.$硬件实现的功能一般比软件实现具有更高的执行速度 $D.$软件的功能不能用硬件取代 解：$D$。软件和硬件具有逻辑上的等效性，硬件实现具有更高的执行速度，软件实现具有更好的灵活性。执行频繁、硬件实现代价不是很高的功能通常由硬件实现。因此选$D$。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/3-instruction-system-ex/" title="计算机组成原理-概述-指令系统"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-概述-指令系统</div></div><div class="info-2"><div class="info-item-1">指令系统习题指令格式操作码例题 一个计算机系统采用$32$位单字长指令，地址码为$12$位，若定义了$250$条二地址指令，则还可以有()条单地址指令。 $A.4K$ $B.8K$ $C.16K$ $D.24K$ 解：$D$。地址码为$12$位，二地址指令的操作码长度为$32-12-12&#x3D;8$位，已定义了$250$条二地址指令，$2^8-250&#x3D;6$，所以上一层多出了六种地址给单地址指令，即可以设计出单地址指令$6×2^{12}&#x3D;24K$条。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Network/0-summary-ex/" title="计算机网络-概述-习题"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机网络-概述-习题</div></div><div class="info-2"><div class="info-item-1">概述习题计算机网络例题 计算机网络可被理解为()。 $A$.执行计算机数据处理的软件模块 $B$.由自治的计算机互联起来的集合体 $C$.多个处理器通过共享内存实现的紧耦合系统 $D$.用于共同完成一项任务的分布式系统 解：$B$。计算机网络是由自治计算机互联起来的集合体，其中包含着三个关键点:自治计算机、互联、集合体。自治计算机由软件和硬件两部分组成，所以A错误，能完整地实现计算机的各种功能；互联是指计算机之间能实现相互通信;集合体是指所有使用通信线路及互联设备连接起来的自治计算机的集合。选项C和D分别指多机系统和分布式系统。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Network/0-summary/" title="计算机网络-概述"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机网络-概述</div></div><div class="info-2"><div class="info-item-1">概述计算机网络是互连（互联互通）、自治（无主从关系）的计算机集合。 计算机功能 数据通信。 资源共享（硬件、软件、数据）。 分布式处理。 提高可靠性。 负载均衡。  标准化标准的分类 法定标准：由权威机构制定的正式合法的标准，如$OSI$。 事实标准：某些公司产品在竞争中占据主流，其产品的协议与技术就成为了标准，如$TCP&#x2F;IP$。  工作阶段$RCF$（$Request For...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/2-storage-system-ex/" title="计算机组成原理-存储系统-习题"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-存储系统-习题</div></div><div class="info-2"><div class="info-item-1">存储系统习题存储器概念存储器层次化结构例题 下列关于多级存储系统的说法中，正确的有()。Ⅰ.多级存储系统是为了降低存储成本Ⅱ.虚拟存储器中主存和辅存之间的数据调动对任何程序员是透明的Ⅲ.$CPU$只能与$Cache$直接交换信息，$CPU$与主存交换信息也需要经过$Cache$ $A.$仅Ⅰ $B.$仅Ⅰ和Ⅱ $C.$Ⅰ、Ⅱ和Ⅲ $D.$仅Ⅱ 解：$A$。主存和辅存之间的数据调动是由硬件和操作系统共同完成的，仅对应用级程序员透明。$CPU$与主存可直接交换信息。 半导体随机存储器SRAM和DRAMDRAM的刷新例题 一个$1K\times4$位的动态$RAM$芯片，刷新周期为$2ms$，若其内部结构排列成$64\times64$形式，且存取周期为$0.1\mu...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/3-instruction-system/" title="计算机组成原理-指令系统"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-指令系统</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/IMG_2189.JPG" onerror="this.onerror=null;this.src='/image/404.png'" alt="avatar"/></div><div class="author-info-name">Justyn</div><div class="author-info-description">###Made in China.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Justtyn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Justtyn" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:togjustyn@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">1.1.</span> <span class="toc-text">计算机的发展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">硬件的发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">软件的发展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.1.3.</span> <span class="toc-text">计算机的分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">计算机系统层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.</span> <span class="toc-text">计算机结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">冯诺伊曼结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">现代计算机结构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%9E%84%E6%88%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">硬件构成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#I-O%E8%AE%BE%E5%A4%87"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">I&#x2F;O设备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">存储器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E5%99%A8"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">运算器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">1.2.2.4.</span> <span class="toc-text">控制器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="toc-number">1.2.2.5.</span> <span class="toc-text">逻辑电路</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">计算机工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%B1%82%E6%AC%A1"><span class="toc-number">1.2.4.</span> <span class="toc-text">计算机层次</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.3.</span> <span class="toc-text">计算机性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.3.1.</span> <span class="toc-text">主存储器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">1.3.2.</span> <span class="toc-text">中央处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%95%B4%E4%BD%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">系统整体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E4%B8%9A%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.3.4.</span> <span class="toc-text">专业术语</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/1-physical-layer-ex/" title="计算机网络-物理层-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-物理层-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/1-physical-layer-ex/" title="计算机网络-物理层-习题">计算机网络-物理层-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/0-summary-ex/" title="计算机网络-概述-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-概述-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/0-summary-ex/" title="计算机网络-概述-习题">计算机网络-概述-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/0-summary/" title="计算机网络-概述"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-概述"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/0-summary/" title="计算机网络-概述">计算机网络-概述</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/1-physical-layer/" title="计算机网络-物理层"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-物理层"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/1-physical-layer/" title="计算机网络-物理层">计算机网络-物理层</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/4-transport-layer-ex/" title="计算机网络-传输层-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-传输层-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/4-transport-layer-ex/" title="计算机网络-传输层-习题">计算机网络-传输层-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/loginBackground1.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Justyn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a href="https://justtyn.github.io/">  Blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

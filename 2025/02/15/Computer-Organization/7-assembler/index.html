@@ -1,0 +1,786 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机组成原理-汇编程序 | Justyn's Blog</title><meta name="author" content="Justyn"><meta name="copyright" content="Justyn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="计算机组成原理-汇编程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理-汇编程序">
+<meta property="og:url" content="https://justtyn.github.io/2025/02/15/Computer-Organization/7-assembler/index.html">
+<meta property="og:site_name" content="Justyn&#39;s Blog">
+<meta property="og:description" content="计算机组成原理-汇编程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://justtyn.github.io/image/loginBackground1.jpg">
+<meta property="article:published_time" content="2025-02-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-14T16:00:00.000Z">
+<meta property="article:author" content="Justyn">
+<meta property="article:tag" content="考研">
+<meta property="article:tag" content="计算机组成原理">
+<meta property="article:tag" content="汇编程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://justtyn.github.io/image/loginBackground1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计算机组成原理-汇编程序",
+  "url": "https://justtyn.github.io/2025/02/15/Computer-Organization/7-assembler/",
+  "image": "https://justtyn.github.io/image/loginBackground1.jpg",
+  "datePublished": "2025-02-14T16:00:00.000Z",
+  "dateModified": "2025-02-14T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Justyn",
+      "url": "https://justtyn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://justtyn.github.io/2025/02/15/Computer-Organization/7-assembler/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成原理-汇编程序',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/image/loginBackground1.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/image/IMG_2189.JPG" onerror="this.onerror=null;this.src='/image/404.png'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/image/loginBackground1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/image/IMG_2189.JPG" alt="Logo"><span class="site-name">Justyn's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机组成原理-汇编程序</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理-汇编程序</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-14T16:00:00.000Z" title="更新于 2025-02-15 00:00:00">2025-02-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/">考研</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%80%83%E7%A0%94/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F/">汇编程序</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="汇编程序"><a href="#汇编程序" class="headerlink" title="汇编程序"></a>汇编程序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在计算机组成原理中会涉及汇编语言的基本指令，需要对基本命令有基本的掌握。</p>
+<p>机器语言是机器指令的集合。这些机器指令本质上就是由一组0和1组成的命令，是CPU唯一能解释执行的命令。</p>
+<p>机器语言和高级语言之间的就是汇编语言，汇编语言是人类可以理解的语言。</p>
+<p>汇编语言的主体是汇编指令，汇编指令和机器指令的差别在于指令的表示方法上，汇编指令是机器指令的助记符，汇编指令是更便于记忆的一种书写格式。它较为有效地解决了机器指令编写程序难度大的问题，汇编语言与人类语言更接近，便于阅读和记忆。使用编译器，可以把汇编程序转译成机器指令程序。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1000100111011000</span><br><span class="line">MOV AX,BX</span><br></pre></td></tr></table></figure>
+
+<p>汇编语言不区分大小写。</p>
+<p>表示把寄存器BX的内容移动到寄存器$AX$中。</p>
+<h3 id="运行流程"><a href="#运行流程" class="headerlink" title="运行流程"></a>运行流程</h3><p>这就需要对汇编程序进行编译，即将其翻译成由机器指令组成的机器码，如此计算机就能执行汇编程序上。本质上，计算执行的仍然是机器指令，而非汇编指令。对更多高级的编程语言（比如$C++$等），使用高级语言编写的程序同样需要先转译成汇编程序，再编译成机器码，从而进一步地在机器上运行。这个过程，即编译过程。</p>
+<p>把机器码程序（机器指令程序）转译成汇编指令，即反编译过程。</p>
+<h3 id="汇编语言组成"><a href="#汇编语言组成" class="headerlink" title="汇编语言组成"></a>汇编语言组成</h3><ol>
+<li>汇编指令：与机器指令一一对应，它是机器码的助记符，汇编后变成机器语言可以被计算机$CPU$执行。</li>
+<li>伪指令：由编译器识别执行，用于指示汇编程序如何汇编源程序，也称为命令语句，编译结束后伪指令失去作用，计算机$CPU$不执行。</li>
+<li>其它符号：如+、-等，由编译器识别执行，没有对应机器码。</li>
+</ol>
+<p>汇编语言的核心是汇编指令，汇编指令决定了汇编程序的特性。</p>
+<h2 id="8086CPU"><a href="#8086CPU" class="headerlink" title="8086CPU"></a>8086CPU</h2><p>是一个由$Intel$于$1978$年所设计的$16$位微处理器芯片，是$x86$架构的鼻祖。</p>
+<h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>$8086CPU$有$14$个$16$位寄存器，既能处理$16$位数据，也能处理$8$位数据，分别为：</p>
+<p>通用寄存器，用来存放一般性数据：</p>
+<ul>
+<li>数据寄存器：一般用于存放参与运算的操作数或运算结果。分为两个字节，高位和低位，其中高位为$\cdots H$，低位为$\cdots L$，如$AX$分为两个八位的$AH$和$AL$：<ul>
+<li>$AX$（$Accumulator$）：累加器。用该寄存器存放运算结果，可提高指令的执行速度。此外，所有的$I&#x2F;O$指令都使用该寄存器与外设端口交换信息。</li>
+<li>$BX$（$Base$）：基址寄存器。$8086&#x2F;8088CPU$中有两个基址寄存器$BX$和$BP$。$BX$用来存放操作数在内存中数据段内的偏移地址，$BP$用来存放操作数在堆栈段内的偏移地址。</li>
+<li>$CX$（$Counter$）：计数器。在设计循环程序时，使用该寄存器存放循环次数，可使程序指令简化，有利于提高程序的运行速度。</li>
+<li>$DX$（$Data$）：数据寄存器。在寄存器间接寻址的$I&#x2F;O$指令中存放$I&#x2F;O$端口地址；在做双字长乘除法运算时，$DX$与$AX$一起存放一个双字长操作数，其中$DX$存放高$16$位数。</li>
+</ul>
+</li>
+<li>地址指针寄存器：<ul>
+<li>$SP$（$Stack,Pointer$）：堆栈指针寄存器。在使用堆栈操作指令（$PUSH$或$POP$）对堆栈进行操作时，每执行一次进栈或出栈操作，系统会自动将$SP$的内容减$2$或加$2$，以使其始终指向栈顶。其中$ESP$（$Extended Stack Pointer$）为扩展栈指针寄存器，是$32$位寄存器，用于存放函数栈顶指针。</li>
+<li>$BP$（$Base,Pointer$）：基址寄存器。作为通用寄存器，它可以用来存放数据，但更经常更重要的用途是存放操作数在堆栈段内的偏移地址。$EBP$（$Extended Base Pointer$），扩展基址指针寄存器，也被称为帧指针寄存器，是$32$位寄存器，用于存放函数栈底指针。</li>
+</ul>
+</li>
+<li>变址寄存器：<ul>
+<li>$SI$（$Source,Index$）：源变址寄存器。存放源串在数据段内的偏移地址。</li>
+<li>$DI$（$Destination,Index$）：目的变址寄存器。存放目的串在附加数据段内的偏移地址。</li>
+</ul>
+</li>
+</ul>
+<p>段寄存器，为了对$1M$个存储单元进行管理，$8086&#x2F;8088CPU$对存储器进行分段管理，即将程序代码或数据分别放在代码段、数据段、堆栈段或附加数据段中，每个段最多可达$2^{16}&#x3D;64K$个存储单元。段地址分别放在对应的段寄存器中，代码或数据在段内的偏移地址由有关寄存器或立即数给出：</p>
+<ul>
+<li>$CS$（$Code,Segment$）：代码段寄存器。用来存储程序当前使用的代码段的段地址。$CS$的内容左移四位再加上指令指针寄存器$IP$的内容就是下一条要读取的指令在存储器中的物理地址。</li>
+<li>$SS$（$Stack,Segment$）：堆栈段寄存器。用来存储程序当前使用的堆栈段的段地址。堆栈是存储器中开辟的按先进后出原则组织的一个特殊存储区，主要用于调用子程序或执行中断服务程序时保护断点和现场。</li>
+<li>$DS$（$Data,Segment$）：数据段寄存器。用来存储程序当前使用的数据段的段地址。$DS$的内容左移四位再加上按指令中存储器寻址方式给出的偏移地址即得到对数据段指定单元进行读写的物理地址。</li>
+<li>$ES$（$Extra,Segment$）：附加数据段寄存器。用来存储程序当前使用的附加数据段段的段地址。附加数据段用来存放字符串操作时的目的字符串。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">段寄存器</th>
+<th align="center">提供段内偏移地址的寄存器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CS</td>
+<td align="center">IP</td>
+</tr>
+<tr>
+<td align="center">DS</td>
+<td align="center">BX、SI、DI或一个16位数</td>
+</tr>
+<tr>
+<td align="center">SS</td>
+<td align="center">SP或BP</td>
+</tr>
+<tr>
+<td align="center">ES</td>
+<td align="center">DI（用于字符串操作指令）</td>
+</tr>
+</tbody></table>
+<p>控制寄存器：用于存放控制数据：</p>
+<ul>
+<li>$IP$（$Instruction,Pointer$）：指令指针寄存器。用来存放下一条要读取的指令在代码段内的偏移地址。用户程序不能直接访问$IP$。</li>
+<li>$FLAGS$：标志寄存器，也称为程序状态寄存器（$PSW$）。它是一个$16$位的寄存器，但只用了其中的$9$位，包括$6$个状态标志位和$3$个控制标志位。</li>
+</ul>
+<p>$FLAGS$标志位的索引从0到15，则：</p>
+<p>状态标志位，用于查看运算数据状态：</p>
+<table>
+<thead>
+<tr>
+<th align="center">简写</th>
+<th align="center">英文名称</th>
+<th align="center">中文名称</th>
+<th align="center">索引</th>
+<th align="center">描述</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CF</td>
+<td align="center">Carry Flag</td>
+<td align="center">进位标志位</td>
+<td align="center">0</td>
+<td align="center">当进行加减运算时 ，若最高位发生进位或借位，则CF为1，否则为0</td>
+<td align="center">判断十六位无符号数运算结果是否超出了计算机所能表示的无符号数的范围</td>
+</tr>
+<tr>
+<td align="center">PF</td>
+<td align="center">Parity Flag</td>
+<td align="center">奇偶标志位</td>
+<td align="center">2</td>
+<td align="center">当指令执行结果的低8位中含有偶数个1时，PF为1，否则为0</td>
+<td align="center">奇偶校验</td>
+</tr>
+<tr>
+<td align="center">AF</td>
+<td align="center">Auxiliary Flag</td>
+<td align="center">辅助进位标志位</td>
+<td align="center">4</td>
+<td align="center">当执行一条加法或减法运算指令时，若结果的低字节的低4位向低字节的高4位（0-3向4-7）有进位或借位，则AF为1，否则为0</td>
+<td align="center">判断四位无符号数运算结果是否超出了计算机所能表示的无符号数的范围，如BCD码</td>
+</tr>
+<tr>
+<td align="center">ZF</td>
+<td align="center">Zero Flag</td>
+<td align="center">零标志位</td>
+<td align="center">6</td>
+<td align="center">若当前的运算结果为0，则ZF为1，否则为0</td>
+<td align="center">快速判断0</td>
+</tr>
+<tr>
+<td align="center">SF</td>
+<td align="center">Sign Flag</td>
+<td align="center">符号标志位</td>
+<td align="center">7</td>
+<td align="center">若运算结果的最高位为1，SF&#x3D;1，否则为0</td>
+<td align="center">快速获取符号</td>
+</tr>
+<tr>
+<td align="center">OF</td>
+<td align="center">Overflow Flag</td>
+<td align="center">溢出标志位</td>
+<td align="center">11</td>
+<td align="center">当运算结果超出了带符号数所能表示的数值范围，即溢出时，OF&#x3D;1，否则为0</td>
+<td align="center">该判断带符号数运算结果是否溢出</td>
+</tr>
+</tbody></table>
+<p>控制标志位有三个，用于控制CPU的操作，由程序设置或清除：</p>
+<table>
+<thead>
+<tr>
+<th align="center">简写</th>
+<th align="center">英文名称</th>
+<th align="center">中文名称</th>
+<th align="center">索引</th>
+<th align="center">描述</th>
+<th align="center">用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TF</td>
+<td align="center">Trap Flag</td>
+<td align="center">跟踪（陷阱）标志位</td>
+<td align="center">8</td>
+<td align="center">若将TF置1，CPU处于单步工作方式，每执行一条指令后产生一次单步中断</td>
+<td align="center">简化测试程序</td>
+</tr>
+<tr>
+<td align="center">IF</td>
+<td align="center">Interrupt Flag</td>
+<td align="center">中断允许标志位</td>
+<td align="center">9</td>
+<td align="center">若将IF置1，表示允许CPU接受外部从INTR引脚上发来的可屏蔽中断请求；若用CLI指令将IF清0，则禁止CPU接受可屏蔽中断请求信号</td>
+<td align="center">控制CPU是否可以响应CPU外部的可屏蔽状态中断请求</td>
+</tr>
+<tr>
+<td align="center">DF</td>
+<td align="center">Direction Flag</td>
+<td align="center">方向标志位</td>
+<td align="center">10</td>
+<td align="center">若将DF置为1，串操作按减地址方式进行，也就是说，从高地址开始，每操作一次地址自动递减；否则按增地址方式进行</td>
+<td align="center">串操作时控制数据计算的方向</td>
+</tr>
+</tbody></table>
+<h3 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h3><p>有$16$根数据线和$20$根地址线。</p>
+<p>由于$20$根地址线，所以可寻址的内存空间为$2^{20}&#x3D;1MB$。但是由于数据线只有$16$位，所以$CPU$内部只能传输$16$位的地址。所以为了解决这个问题，$8086CPU$使用了两个十六位地址通过地址加法器合成一个二十位物理地址的方式。</p>
+<p>其中定义第一个地址为段地址，第二个地址为偏移地址，即物理地址&#x3D;段地址$\times16+$偏移地址。</p>
+<p>如传入两个十六位地址，$1230H$和$00C8H$，然后$1230H\times16&#x3D;12300H$（乘其对应的进制数等价于左移一位），然后$12300H+00C8&#x3D;123C8$得到最终地址。</p>
+<p>所以给定一个段地址，仅通过变化$n$位的偏移地址来寻址最多可以定位$2^n$个内存单元。</p>
+<h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><p>在$8086CPU$加电启动或复位后（即$CPU$刚开始工作时）$CS$被设置为$FFFFH$，而$IP$被设置为$0000H$，即在$8086PC$机刚启动时，$CPU$使用地址加法器从内存$FFFF\times10H+0000H&#x3D;FFFF0H$单元中读取指令执行，$FFFF0H$单元中的指令是$8086PC$机开机后执行的第一条指令。</p>
+<ul>
+<li>在$CPU$中，程序员能够用指令读写的部件只有寄存器，程序员可以通过改变寄存器中的内容实现对$CPU$的控制。</li>
+<li>$CPU$从何处执行指令是由$CS$、$IP$中的内容决定的，程序员可以通过改变$CS$、$IP$中的内容来控制$CPU$执行目标指令。</li>
+<li>但是不能直接改变$CS$、$IP$寄存器的值，所以$8086CPU$使用转移指令来进行设置<code>JMP 段地址:偏移地址</code>。</li>
+<li>其中段地址用来修改$CS$，偏移地址用来修改$IP$。如果仅修改$IP$内容，可以使用<code>JMP 寄存器地址</code>，如<code>JMP AX</code>类似于<code>MOV IP,AX</code>。</li>
+</ul>
+<h2 id="汇编指令"><a href="#汇编指令" class="headerlink" title="汇编指令"></a>汇编指令</h2><h3 id="数据传输指令"><a href="#数据传输指令" class="headerlink" title="数据传输指令"></a>数据传输指令</h3><p>通用数据传送指令：</p>
+<ul>
+<li>$MOV$：<ul>
+<li>格式：<code>MOV 目的,源</code>。</li>
+<li>功能：把源操作数赋值传送给目的操作数，源操作数不变。</li>
+<li>要求：目的和源可以为数据也可以为地址。</li>
+<li>禁止操作：向段寄存器写入立即数（必须通过通用寄存器中转）；$CS$作为目标寄存器；目的地址与源地址同时为存储单元或段寄存器。</li>
+</ul>
+</li>
+<li>$MOVSX$：<ul>
+<li>格式：<code>MOVSX 目的寄存器,源操作数</code>。</li>
+<li>功能：把源操作数先进行符号拓展（为正数则高位补0，负数则高位补1），再赋值传送给目的操作数，源操作数不变。</li>
+<li>要求：源操作数字长要小于或等于目标寄存器字长。</li>
+</ul>
+</li>
+<li>$MOVZX$：<ul>
+<li>格式：<code>MOVZX 目的寄存器,源操作数</code>。</li>
+<li>功能：把源操作数先进行零拓展（高位补0），再赋值传送给目的操作数，源操作数不变。</li>
+<li>要求：源操作数字长要小于或等于目标寄存器字长。</li>
+</ul>
+</li>
+<li>$LEA$：<ul>
+<li>格式：<code>LEA 目的寄存器,源操作数</code>。</li>
+<li>功能：计算内存单元的有效地址（不是其中的操作数）并送到目的寄存器中。</li>
+<li>说明：有效地址就是偏移地址，LEA指令等效于OFFSET运算符，计算DS段地址加上偏移地址的地址。</li>
+</ul>
+</li>
+<li>$XCHG$：<ul>
+<li>格式：<code>XCHG 操作数1,操作数2</code>。</li>
+<li>功能：对两个操作数进行位置互换。</li>
+<li>要求：操作数类型需要一致；至少一个为寄存器。</li>
+<li>禁止操作：操作数为段寄存器或立即数或内存操作数。</li>
+</ul>
+</li>
+<li>$CMPXCHG$：<ul>
+<li>格式：<code>CMPXCHG 操作数1,操作数2</code>。</li>
+<li>功能：比较并对两个操作数进行位置互换。</li>
+<li>要求：第二个操作数必须为累加器$AL&#x2F;AX&#x2F;EAX$。</li>
+<li>禁止操作：操作数为段寄存器或立即数或内存操作数。</li>
+</ul>
+</li>
+</ul>
+<p>堆栈传输指令：</p>
+<p>堆栈操作指令中的操作数类型必须是字操作数，即16位操作数。</p>
+<ul>
+<li>$PUSH$：<ul>
+<li>格式：<code>PUSH 源地址</code>。</li>
+<li>功能：将字压入堆栈。</li>
+<li>说明：一个字进栈，系统自动完成两步操作：$SP\leftarrow SP-2$，$(SP)\leftarrow$操作数。</li>
+<li>说明：一个双字进栈，系统自动完成两步操作：$ESP\leftarrow ESP-4$，$(ESP)\leftarrow$操作数。</li>
+</ul>
+</li>
+<li>$POP$：<ul>
+<li>格式：<code>POP 目的地址</code>。</li>
+<li>功能：将字弹出堆栈。</li>
+<li>说明：弹出一个字，系统自动完成两步操作：操作数$\leftarrow(SP)$，$SP\leftarrow SP+2$。</li>
+<li>说明：弹出一个双字，系统自动完成两步操作：操作数$\leftarrow(ESP)$，$ESP\leftarrow SP+4$。</li>
+</ul>
+</li>
+<li>$PUSHA$：<ul>
+<li>格式：<code>PUSHA</code>。</li>
+<li>功能：把通用寄存器$AX,CX,DX,BX,SP,BP,SI,DI$依次全部压入堆栈。</li>
+<li>要求：为$16$位字。</li>
+</ul>
+</li>
+<li>$POPA$：<ul>
+<li>格式：<code>POPA</code>。</li>
+<li>功能：把通用寄存器$DI,SI,BP,SP,BX,DX,CX,AX$依次全部弹出堆栈。</li>
+<li>要求：为$16$位字。</li>
+</ul>
+</li>
+<li>$PUSHAD$：<ul>
+<li>格式：<code>PUSHAD</code>。</li>
+<li>功能：把拓展通用寄存器$AX,CX,DX,BX,SP,BP,SI,DI$依次全部压入堆栈。</li>
+<li>要求：为$32$位字。</li>
+</ul>
+</li>
+<li>$POPAD$：<ul>
+<li>格式：<code>POPAD</code>。</li>
+<li>功能：把拓展通用寄存器$DI,SI,BP,SP,BX,DX,CX,AX$依次全部弹出堆栈。</li>
+<li>要求：为$32$位字。</li>
+</ul>
+</li>
+</ul>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>首先下载<a target="_blank" rel="noopener" href="https://www.dosbox.com/download.php?main=1">DOSBox</a>，下载后点击安装。DOSBox即通过软件让在不同的系统如Windows、Linux、MacOS等运行DOS程序，直接操作硬件。</p>
+<p>然后下载<a target="_blank" rel="noopener" href="http://www.winwin7.com/soft/27172.html#xiazai">MASM5.0</a>，将压缩包解压并把对应文件夹放到指定位置。宏汇编程序$MASM$是具有宏加工功能的汇编程序。可以用它定义含参数的程序段，在使用的位置上调用它们，汇编时将进行宏指令展开，把宏定义所预先定义的指令目标代码插在该位置上。</p>
+<h3 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h3><p>完成后打开$DOSBox$的$DOSBox.exe$程序。</p>
+<p>由于这个软件的起始目录是$Z$，并没有我们电脑上的任何本地目录，所以我们需要首先将我们自己的目录给挂载到$DOSBox$系统中。</p>
+<p>需要将$MASM$目录挂载在$DOSBox$中，输入<code>MOUNT 挂载虚拟盘符 MASM5.0安装地址</code>（命令不区分大小写）。如我的$MASM5.0$安装在$D$盘的$MASM$目录下，要挂载到$D$盘中运行，就要在$DOSBox$控制台中输入<code>MOUNT D: D://MASM</code>。如果挂载成功会显示$Drive,D,is,mounted,as,local,directory,D:&#x2F;&#x2F;MASM\$</p>
+<p>然后查看部署是否成功，<code>D:</code>、<code>dir</code>，如果显示列表中出现了$DEBUG$就代表MASM挂载成功，可以使用里面的$DEBUG$进行操作。</p>
+<p>然后挂载成功后输入<code>D:</code>进入挂载地址，输入<code>DEBUG</code>就可以开始使用$DEBUG$了（汇编程序执行器）。</p>
+<p>此后每次使用$DOSBox$就必须挂载$MASM$，非常麻烦，可以在配置文件中配置挂载命令。</p>
+<p>找到$DOSBox,0.74-3,Options.bat$，双击打开配置文件（注意不要直接修改bat文件），在末尾添加：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MOUNT D: D://MASM</span><br><span class="line"><span class="function">D:</span></span><br></pre></td></tr></table></figure>
+
+<p>就相当于默认挂载，并转到虚拟盘符地址，点击$DOSBox.exe$可以直接使用相关工具了。</p>
+<ul>
+<li>$EDIT$编辑器。</li>
+<li>$MASM$编译器。</li>
+<li>$LINK$连接器。</li>
+<li>$DEBUG$调试器。</li>
+</ul>
+<h3 id="DEBUG"><a href="#DEBUG" class="headerlink" title="DEBUG"></a>DEBUG</h3><ul>
+<li>$R$命令查看、改变$CPU$寄存器的内容。<ul>
+<li><code>R</code>查看所有寄存器内容。</li>
+<li><code>R 寄存器名</code>查看指定寄存器内容。然后下一行弹出一个:，后面可以添加值，从而能修改指定寄存器内容。</li>
+</ul>
+</li>
+<li>$D$命令查看内存中的内容。其中左边为十六进制值，右边为对应ASCII值。<ul>
+<li><code>D 段地址:偏移地址</code>：查看指定段地址与偏移地址所指向的内存后128个内存单元中内容。</li>
+<li><code>D 段地址:偏移地址 数量</code>：查看指定段地址与偏移地址所指向的内存后指定数量的内存单元中的内容。</li>
+</ul>
+</li>
+<li>$E$命令改写内存中的内容。<ul>
+<li><code>E 段地址:偏移地址 数据列表</code>：从指定段地址与偏移地址所指向的内存开始修改内容为数据列表。数据列表中间以空格分隔。</li>
+<li><code>E 段地址:偏移地址</code>：不表明数据列表，则控制台会主动给你提供从该地址开始的原数据，可以在后面输入新数据，输入空格后会继续弹出下个地址的原数据，回车结束输入执行修改。</li>
+<li><code>E 段地址:偏移地址 &quot;字符串&quot;</code>：从指定段地址与偏移地址所指向的内存开始保存字符串值，对应的ASCII码自动转换并保存到内容中。</li>
+</ul>
+</li>
+<li>$U$命令将内存中的机器指令翻译成汇编指令。<code>U 段地址:偏移地址</code>。结果分别为地址、机器指令、汇编指令、说明。</li>
+<li>$A$命令以汇编指令的格式在内存中写入一条机器指令。<code>A 段地址:偏移地址</code>。从该地址开始输入汇编指令保存到对应内存。</li>
+<li>$T$命令执行一条机器指令。<code>T 段地址:偏移地址</code>。从该地址执行保存的汇编指令。</li>
+</ul>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="数据操作"><a href="#数据操作" class="headerlink" title="数据操作"></a>数据操作</h3><p>如要读取$10000H$单元的内容可以使用下面的汇编程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MOV BX,1000H</span><br><span class="line">MOV DS,BX</span><br><span class="line">MOV AL,[0]</span><br></pre></td></tr></table></figure>
+
+<p>首先我们要读取$10000H$单元的内容，则必须把这个内容移动到段寄存器中然后读取。但是段寄存器不能直接被赋值，必须通过通用寄存器。所以第一步就是将$1000H$移动到基址通用寄存器$BX$中，因为是基址所以将$10000H$右移四位变为$1000H$为基址（$10000H$表示欸$1000:0$）。然后将$1000H$基址从基址寄存器中移动到数据段寄存器$DS$中，此时可以通过$DS$读取数据了。其中$[X]$表示内存单元，$X$表示相对于段寄存器地址的偏移量，所以$[0]$的计算后的基址就是$1000H\times16+0&#x3D;10000H$，然后通过$MOV$命令移动到$AL$累加器寄存器中。移动到$AL$而不是$AX$是因为一个内存单位为一个字节，为八比特，而$8086CPU$一个字为两个字节，所以只用累加器的低位就可以了，即$AL$即可。</p>
+<p>所以针对数据传输必然是：数据→通用寄存器→段寄存器。</p>
+<h3 id="字操作"><a href="#字操作" class="headerlink" title="字操作"></a>字操作</h3><p>由于$8086CPU$数据线为$16$根，所以其字大小为十六位即两个字节。之前数据传输时只是传输一个字节，所以通用寄存器使用$AL$而不是$AX$，而这里要传输字，所以使用一整个通用寄存器。</p>
+<p>假如内存情况为：</p>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">10000H</td>
+<td align="center">23</td>
+</tr>
+<tr>
+<td align="center">10001H</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">10002H</td>
+<td align="center">22</td>
+</tr>
+<tr>
+<td align="center">10003H</td>
+<td align="center">66</td>
+</tr>
+</tbody></table>
+<p>执行下面的汇编程序，请问执行后寄存器会变成什么样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1000H</span><br><span class="line">MOV DS,AX</span><br><span class="line">MOV AX,[0]</span><br><span class="line">MOV BX,[2]</span><br><span class="line">MOV CX,[1]</span><br><span class="line">ADD BX,[1]</span><br><span class="line">ADD CX,[2]</span><br></pre></td></tr></table></figure>
+
+<p>计算机默认为小端模式，所以高位在高地址，低位在地地址，所以比如要读取10000H指向的字，不能只读一个$23$，因为只有八位而$8086CPU$字长为十六位，所以还要向高位读一个字节，即为$1123$，高地址的在高位，所以$11$在$23$前面。</p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">寄存器内容变化</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">MOV AX,1000H</td>
+<td align="center">AX&#x3D;1000H</td>
+<td align="center">将基址1000H送到累加器中</td>
+</tr>
+<tr>
+<td align="center">MOV DS,AX</td>
+<td align="center">DS&#x3D;1000H</td>
+<td align="center">将基址1000H赋值给数据段寄存器</td>
+</tr>
+<tr>
+<td align="center">MOV AX,[0]</td>
+<td align="center">AX&#x3D;1123H</td>
+<td align="center">将偏移量为0的数据读取到AX中，多读一个[1]位置</td>
+</tr>
+<tr>
+<td align="center">MOV BX,[2]</td>
+<td align="center">BX&#x3D;6622H</td>
+<td align="center">将偏移量为2的数据读取到BX中，多读一个[3]位置</td>
+</tr>
+<tr>
+<td align="center">MOV CX,[1]</td>
+<td align="center">CX&#x3D;2211H</td>
+<td align="center">将偏移量为1的数据读取到CX中，多读取一个[2]位置</td>
+</tr>
+<tr>
+<td align="center">ADD BX,[1]</td>
+<td align="center">BX&#x3D;8833H</td>
+<td align="center">即将[1]位置的数据与BX数据相加，[1]位置的数据不能是半字，所以必须为十六位，即[2][1]&#x3D;2211H，相加得到6622H+2211H&#x3D;8833H</td>
+</tr>
+<tr>
+<td align="center">ADD CX,[2]</td>
+<td align="center">CX&#x3D;8833H</td>
+<td align="center">同理将[2]位置的数据扩展为[3][2]&#x3D;6622H，相加2211H+6622H&#x3D;8833H</td>
+</tr>
+</tbody></table>
+<h3 id="段操作"><a href="#段操作" class="headerlink" title="段操作"></a>段操作</h3><p>对于$8086CPU$可以将数据根据需要让一组内存单元定义为一个段，以后操作根据段来进行。</p>
+<ul>
+<li>组的最大长度为$64K$，因为偏移量为$2^{16}&#x3D;64K$。</li>
+<li>地址连续。</li>
+<li>起始地址为$16$倍数。（即地址的最后一个数字为$0$，如$123B0H$）</li>
+</ul>
+<p>将$123B0H\sim123BAH$的内存单元定义为数据段，累加这个数据段中的前三个单元中的数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,123BH</span><br><span class="line">MOV DS,AX</span><br><span class="line">MOV AL,0</span><br><span class="line">ADD AL,[0]</span><br><span class="line">ADD AL,[1]</span><br><span class="line">ADD AL,[2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="栈操作"><a href="#栈操作" class="headerlink" title="栈操作"></a>栈操作</h3><p>$8086CPU$的栈操作都是以字，即十六比特为单位进行。高地址单元放高八位，低地址单元放低八位。</p>
+<p>其中$SS$指向栈顶的段地址，$SP$指向栈顶的偏移地址，所以$SS:SP$指向栈顶元素。</p>
+<p>如将$10000H\sim1000FH$作为栈，执行下面指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,0123H</span><br><span class="line">PUSH AX</span><br><span class="line">MOV BX,2266H</span><br><span class="line">PUSH BX</span><br><span class="line">MOV CX,1122H</span><br><span class="line">PUSH CX</span><br><span class="line">POP AX</span><br><span class="line">POP BX</span><br><span class="line">POP CX</span><br></pre></td></tr></table></figure>
+
+<p>$10000H\sim1000FH$作为栈，则栈底为高位$1000FH$，栈底为低位$10000H$，由于需要压入栈一共三个数据六个字节，所以只有$1000AH\sim1000FH$被使用到。</p>
+<table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">MOV AX,0123H</th>
+<th align="center">PUSH AX</th>
+<th align="center">MOV BX,2266H</th>
+<th align="center">PUSH BX</th>
+<th align="center">MOV CX,1122H</th>
+<th align="center">PUSH CX</th>
+<th align="center">POP AX</th>
+<th align="center">POP BX</th>
+<th align="center">POP CX</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1000AH</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">22</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1000BH</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">11</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1000CH</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">66</td>
+<td align="center">66</td>
+<td align="center">66</td>
+<td align="center">66</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1000DH</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">22</td>
+<td align="center">22</td>
+<td align="center">22</td>
+<td align="center">22</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1000EH</td>
+<td align="center"></td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center">23</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1000FH</td>
+<td align="center"></td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center">01</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>$SP$在入栈和出站是会加减二。</p>
+<p>又将$10000H\sim1000FH$这段空间当作栈，初始状态是空的。设置$AX&#x3D;001AH$，$BX&#x3D;001BH$。将$AX$、$BX$中的数据入栈。然后将$AX$、$BX$清零。最后从栈中恢复$AX$、$BX$原来的内容。</p>
+<p>由于$10000H\sim1000FH$为栈，栈底在高位，所以栈为空时栈顶应该初始化赋值为最大值$1000FH$的下一位$SP&#x3D;0010H$。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MOV AX,1000H</span><br><span class="line">MOV SS,AX</span><br><span class="line">MOV SP,0010H</span><br><span class="line">MOV AX,001AH</span><br><span class="line">MOV BX,001BH</span><br><span class="line">PUSH AX</span><br><span class="line">PUSH BX</span><br><span class="line">SUB AX,AX</span><br><span class="line">SUB BX,BX</span><br><span class="line">POP BX</span><br><span class="line">POP AX</span><br></pre></td></tr></table></figure>
+
+<p>由于$8086CPU$栈空间没有保护，所以可能存在栈顶越界。</p>
+<h3 id="栈段操作"><a href="#栈段操作" class="headerlink" title="栈段操作"></a>栈段操作</h3><p>可以将字段内存作为栈段，这是用户配置的，CPU并不会把它当作栈，所以我们要让$SS:SP$指向自定义栈段，从而能让栈操作指令能访问我们自己定义的栈段。</p>
+<p>由于栈段操作时只需要移动$SP$，所以$SP$的大小决定栈段的最大长度，所以最大长度为$2^{16}&#x3D;64K$。</p>
+<p>如果将$10000H\sim1FFFFH$这段空间作为栈段，初始空间为空，则$SS&#x3D;1000H$，求$SP$。</p>
+<p>由于空间高位为$1FFFFH$作为栈底，所以如果为空，则栈顶应该在$1FFFFH$的更高一位$1FFFFH+1&#x3D;20000H$。但是给定了栈段空间$10000H\sim1FFFFH$，所以不能取到$SS&#x3D;2000H$，否则越界。</p>
+<p>所以向栈中填充一个元素，所以任意时刻，$SS:SP$指向栈顶，当栈中只有一个元素的时候，$SS&#x3D;1000H$，$SP&#x3D;FFFEH$。</p>
+<p>如果栈为空，就相当于栈中唯一的元素出栈，出栈后，$SP&#x3D;SP+2$。$SP$原来为$FFFEH$，SP&#x3D;FFFEH+2&#x3D;0$，所以，当栈为空的时候，$SS&#x3D;1000H$，$SP&#x3D;0$。</p>
+<p>所以$CS:IP$指向哪里，$CPU$就将该段内存当作代码，$SS:IP$指向哪里，$CPU$就将该段内存当作栈。</p>
+<h2 id="程序定义"><a href="#程序定义" class="headerlink" title="程序定义"></a>程序定义</h2><p>可以将汇编文件使用编译器编译为可执行文件。编写-&gt;编译-&gt;连接-&gt;执行。</p>
+<p>如下面就是一个简单的汇编源程序：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ASSUME CS:codeseg</span><br><span class="line">codeseg SEGMENT</span><br><span class="line">START: MOV AX,0123H</span><br><span class="line">       MOV BX,0456H</span><br><span class="line">       ADD AX,BX</span><br><span class="line">       ADD AX,AX</span><br><span class="line">       MOV AX,4C00H</span><br><span class="line">       INT 21H</span><br><span class="line">codeseg ENDS</span><br><span class="line">END START</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义段"><a href="#定义段" class="headerlink" title="定义段"></a>定义段</h3><ul>
+<li>$SEGMENT$和$ENDS$是一对成对使用的伪指令，这是在写可被编译器编译的汇编程序时，必须要用到的一对伪指令。</li>
+<li>$SEGMENT$和$ENDS$的功能是定义一个段，$SEGMENT$说明一个段开始，$ENDS$说明一个段结束。（$END$可以视为$END,SEGMENT$的简写）</li>
+<li>一个段必须有一个名称来标识，使用格式为：<code>段名 SEGMENT</code>、<code>段名 ENDS</code>。</li>
+<li>一个汇编程序是由多个段组成的，这些段被用来存放代码、数据或当作栈空间来使用。</li>
+<li>一个有意义的汇编程序中至少要有一个段，这个段用来存放代码。</li>
+<li>段名称最终会被编译、连接程序处理为一个段的段地址。</li>
+</ul>
+<h3 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h3><p>$END$是一个汇编程序的结束标记，编译器在编译汇编程序的过程中，如果碰到了伪指令$END$，就结束对源程序的编译。</p>
+<p>如果程序写完了，要在结尾处加上伪指令$END$。否则，编译器在编译程序时，无法知道程序在何处结束。</p>
+<p>$END$除了通知编译器程序结束外，还可以通知编译器程序的入口在什么地方。由$START$后面加一个冒号，此后就是汇编指令，即基本的代码段。$END START$即指明入口在$START$位置。</p>
+<h3 id="假设"><a href="#假设" class="headerlink" title="假设"></a>假设</h3><p>$ASSUME$表示为假设的伪代码，假设某一段寄存器与程序中的某个用$SEGMENT$和$ENDS$定义的段相关联，这样就不用再使用$MOV$指令将段通过通用寄存器移动到段寄存器，从而简化了代码。</p>
+<p>如<code>ASSUME CS:codeseg</code>将$codeseg$代码段放到$CS$代码段寄存器中。</p>
+<h3 id="程序返回"><a href="#程序返回" class="headerlink" title="程序返回"></a>程序返回</h3><p>我们的程序最先以汇编指令的形式存在源程序中，经编译、连接后转变为机器码，存储在可执行文件中。</p>
+<p>而$DOS$是一个单任务操作系统，所以只能有一个程序运行，所以一个程序结束后，将$CPU$的控制枚交还给使它得以运行的程序，这个过程为程序返回。</p>
+<p>返回应该在程序的末尾添加返回的程序段。</p>
+<p>如代码的<code>MOV AX,4C00H</code>和<code>INT 21H</code>。这两句话的意思是$DOS$系统功能调$INT 21H$功能中的一种，表示带返回码结束用户程序。$INT 21H$指令中，寄存器$AX$分为$AH$和$AL$两个部分，$AH$中存入指令码$4C$表示带返回码结束，$AL$为程序返回码。用这个指令返回是不需任何条件，还可顺便关闭打开后忘记关闭的文件，并返回寄存器$AL$的值。</p>
+<table>
+<thead>
+<tr>
+<th align="center">AH</th>
+<th align="center">功能</th>
+<th align="center">调用参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">00</td>
+<td align="center">程序终止（同INT 20H）</td>
+<td align="center">CS&#x3D;程序段前缀。</td>
+</tr>
+<tr>
+<td align="center">01</td>
+<td align="center">键盘输入并回显</td>
+<td align="center">AL&#x3D;输入字符。</td>
+</tr>
+<tr>
+<td align="center">02</td>
+<td align="center">显示输出</td>
+<td align="center">DL&#x3D;输出字符。</td>
+</tr>
+<tr>
+<td align="center">03</td>
+<td align="center">异步通迅输入</td>
+<td align="center">AL&#x3D;输入数据。</td>
+</tr>
+<tr>
+<td align="center">04</td>
+<td align="center">异步通迅输出</td>
+<td align="center">DL&#x3D;输出数据</td>
+</tr>
+</tbody></table>
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><ul>
+<li>语法错误：程序在编译时被编译器发现的错误，容易被发现。</li>
+<li>逻辑错误：程序在编译时不能表现出来，在运行时发生的错误，不容易被发现。</li>
+</ul>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><p>打开DOSBox，挂载后直接运行<code>EDIT</code>命令，打开编辑器，编写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ASSUME CS:codeseg</span><br><span class="line">codeseg SEGMENT</span><br><span class="line">MOV AX,0123H</span><br><span class="line">MOV BX,0456H</span><br><span class="line">ADD AX,BX</span><br><span class="line">ADD AX,AX</span><br><span class="line">MOV AX,4C00H</span><br><span class="line">INT 21H</span><br><span class="line">codeseg ENDS</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<p>编写完成偶点击File，选择Save然后输入文件名进行保存。然后点击File的Exit退出编辑。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>然后运行<code>MASM</code>，然后需要输入源程序名。如果源程序文件不是以$asm$为扩展名的话，就要输入它的全名，比如$test.txt$。在输入源程序文件名的时候一定要指明它所在的路径，如<code>D:\MASM\test.asm</code>（但是注意此时你已经挂载了$MASM$，所以必须使用<code>dir</code>查看当前文件路径，文件路径直接为$test.asm$）。如果文件就在当前路径下，只输入文件名就可以。</p>
+<p>然后出现$Object,filename$，默认是后面括号的内容，如果要修改就输入新名字。</p>
+<p>然后是$Source,listing$，表示列表文件，是编译器将源程序编译为目标文件的过程中产生的中间结果。</p>
+<p>最后是$Cross-reference$，表示交叉引用文件，这个文件同列表文件一样，是编译器将源程序编译为目标文件过程中产生的中间结果。</p>
+<p>也可以直接加上文件地址输入，如<code>masm test.asm</code>。</p>
+<h3 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h3><p>将生成的$TEST.OBJ$文件连接为可执行的$TEST.exe$文件。</p>
+<p>控制台中输入$LINK$进行连接。如果目标文件不是以$obj$为扩展名的话，就要输入它的全名，同理要指明文件路径。也可以直接输入<code>LINK TEST.OBJ</code>。</p>
+<p>$Run,file$即表示要生成的可执行文件的名字。$List,file$映像文件是连接程序将目标文件连接为可执行文件过程中产生的中间结果。$Libraries$即库文件，包含了一些可以调用的子程序，如果我们的程序中调用了某一个库文件中的子程序，就需要在连接的时候，将这个库文件和我们的自标文件连接到一起，生成可执行文件。</p>
+<p>此时会提示一个警告：$waning L4021: no stack segment$没有栈段，可以不用理会。得到一个TEST.EXE。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>由于是可执行文件，所以可以直接在控制台中输入文件名进行执行。</p>
+<p>操作系统是由多个功能模块组成的庞大、复杂的软件系统。任何通用的操作系统﹐都要提供一个称为$shell$外壳）的程序，用户（操作人员）使用这个程序来操作计算机系统工作。</p>
+<p>$DOS$中有一个程序$command.com$，这个程序在$DOS$中称为命令解释器，也就是$DOS$系统的$shell$。</p>
+<p>所以就是这个运行的$command$将汇编文件的程序加载进入内存，并设置$CPU$的$CS:IP$指向程序的第一条指令，即程序入口，从而使得程序得以运行。程序运行结束后返回$command$中，$CPU$继续运行$command$。</p>
+<p>可以使用<code>DEBUG 程序名</code>的方式对程序进行监控。使用<code>R</code>指令对内存进行查看。可以看到$CX&#x3D;000F$，即汇编程序一共十五个字节。</p>
+<h2 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h2><h3 id="BX"><a href="#BX" class="headerlink" title="[BX]"></a>[BX]</h3><p>类似于$[0]$表示内存单元的偏移地址，所以$[BX]$也表示一个内存单元，但是偏移地址在$BX$中。</p>
+<h3 id="X"><a href="#X" class="headerlink" title="(X)"></a>(X)</h3><p>$(X)$用于表示一个地址或寄存器中的内容。如$(AX)&#x3D;0010H$，即寄存器$AX$中的内容为$0010H$。如$MOV AX,[2]$等价于$(AX)&#x3D;((DS)*16+2)$，$ADD AX,2$等价于$(AX)&#x3D;(AX)+2$。</p>
+<p>其中定义$idata$表示常量值的占位，如$MOV AX,[idata]$代表$MOV AX,[$常量$]$。</p>
+<h3 id="LOOP"><a href="#LOOP" class="headerlink" title="LOOP"></a>LOOP</h3><p>为循环指令，格式：<code>LOOP 标号</code>。$CPU$执行该指令时会进行两步操作：</p>
+<ol>
+<li>$(CX)&#x3D;(CX)-1$。</li>
+<li>判断$CX$中的值，里面保存循环次数，不为零则转至标号处执行程序，如果为零打破循环向下执行。</li>
+</ol>
+<p>计算$2^{12}$：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ASSUME CS:CODE</span><br><span class="line">CODE SEGMENT</span><br><span class="line">MOV AX,2</span><br><span class="line">MOV CX,11</span><br><span class="line">S: ADD AX,AX</span><br><span class="line">LOOP S</span><br><span class="line">MOV AX,4C00H</span><br><span class="line">INT 21H</span><br><span class="line">CODE ENDS</span><br><span class="line">END</span><br></pre></td></tr></table></figure>
+
+<p>这里的标号$S$就指向的是<code>ADD AX,AX</code>指令。循环执行的语句要在标号和$LOOP$指令之间。</p>
+<p>在实际编程中，经常会遇到，用同一种方法处理地址连续的内存单元中的数据的问题。<br>我们需要用循环来解决这类问题，同时我们必须能够在每次循环的时候按照同一种方法来改变要访问的内存单元的地址。这时，我们就不能用常量来给出内存单元的地址（比如$[0]$、$[1]$是常量），而应用变量。<code>MOV AL,[BX]</code>中的$BX$就可以看作一个代表内存单元地址的变量，我们可以不写新的指令，仅通过改变bx中的数值，改变指令访问的内存单元。</p>
+<p>默认地址的段前缀都是放在$DS$中，可以设置不同的段寄存器从而设置不同的段前缀来简化。</p>
+<h2 id="多段程序"><a href="#多段程序" class="headerlink" title="多段程序"></a>多段程序</h2><p>一个程序不可以只有一个代码段，所以必然存在多个段进行不同的数据操作。</p>
+<p>由于$END$和$START$是一组关键字，$END$可以指明程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ASSUME 段寄存器名:段名</span><br><span class="line">段名 SEGMENT</span><br><span class="line">……</span><br><span class="line">定义数据</span><br><span class="line">……</span><br><span class="line">START:</span><br><span class="line">……</span><br><span class="line">数据代码</span><br><span class="line">……</span><br><span class="line">段名 ENDS</span><br><span class="line">END START</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://justtyn.github.io/">Justyn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://justtyn.github.io/2025/02/15/Computer-Organization/7-assembler/">https://justtyn.github.io/2025/02/15/Computer-Organization/7-assembler/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://justtyn.github.io" target="_blank">Justyn's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%80%83%E7%A0%94/">考研</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><a class="post-meta__tags" href="/tags/%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F/">汇编程序</a></div><div class="post-share"><div class="social-share" data-image="/image/loginBackground1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/15/Computer-Organization/5-bus/" title="计算机组成原理-总线"><img class="cover" src="/image/loginBackground1.jpg" onerror="onerror=null;src='/image/404.png'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">计算机组成原理-总线</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Operate-System/0-summary-ex/" title="操作系统-概述-习题"><img class="cover" src="/image/loginBackground1.jpg" onerror="onerror=null;src='/image/404.png'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">操作系统-概述-习题</div></div><div class="info-2"><div class="info-item-1">概述习题基本概念功能例题 系统调用是由操作系统提供给用户的，它()。 $A.$直接通过键盘交互方式使用 $B.$只能通过用户程序间接使用 $C.$是命令接口中的命令 $D.$与系统的命令一样 解：$B$。系统调用是操作系统为应用程序使用内核功能所提供的接口。 例题 操作系统与用户通信接口通常不包括()。 $A.shell$ $B.$命令解释器 $C.$广义指令 $D.$缓存管理指令 解：$D$。广义指令就是系统调用命令，而命令解释器属于命令接口，$shell$是命令解析器，它也属于命令接口。系统中的缓存全部由操作系统管理，对用户是透明的，操作系统不提供管理系统缓存的系统调用。 特征例题...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/15/Computer-Organization/0-summary-ex/" title="计算机组成原理-概述-习题"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-概述-习题</div></div><div class="info-2"><div class="info-item-1">概述习题计算机的发展例题 只有当程序执行时才将源程序翻译成机器语言，并且一次只能翻译一行语句，边翻译边执行的是()程序，把汇编语言源程序转变为机器语言程序的过程是()。 Ⅰ.编译 Ⅱ.目标 Ⅲ.汇编 Ⅳ.解释 $A.$Ⅰ、Ⅱ $B.$Ⅳ、Ⅱ $C.$Ⅳ、Ⅰ $D.$Ⅳ、Ⅲ 解：$D$。解释程序的特点是翻译一句执行一句，边翻译边执行；由高级语言转化为汇编语言的过程称为编译，把汇编语言源程序翻译成机器语言程序的过程称为汇编。 计算机系统层次结构例题 以下说法错误的是()。 $A.$硬盘是外部设备 $B.$软件的功能与硬件的功能在逻辑上是等效的 $C.$硬件实现的功能一般比软件实现具有更高的执行速度 $D.$软件的功能不能用硬件取代 解：$D$。软件和硬件具有逻辑上的等效性，硬件实现具有更高的执行速度，软件实现具有更好的灵活性。执行频繁、硬件实现代价不是很高的功能通常由硬件实现。因此选$D$。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/0-summary/" title="计算机组成原理-概述"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-概述</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/2-storage-system-ex/" title="计算机组成原理-存储系统-习题"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-存储系统-习题</div></div><div class="info-2"><div class="info-item-1">存储系统习题存储器概念存储器层次化结构例题 下列关于多级存储系统的说法中，正确的有()。Ⅰ.多级存储系统是为了降低存储成本Ⅱ.虚拟存储器中主存和辅存之间的数据调动对任何程序员是透明的Ⅲ.$CPU$只能与$Cache$直接交换信息，$CPU$与主存交换信息也需要经过$Cache$ $A.$仅Ⅰ $B.$仅Ⅰ和Ⅱ $C.$Ⅰ、Ⅱ和Ⅲ $D.$仅Ⅱ 解：$A$。主存和辅存之间的数据调动是由硬件和操作系统共同完成的，仅对应用级程序员透明。$CPU$与主存可直接交换信息。 半导体随机存储器SRAM和DRAMDRAM的刷新例题 一个$1K\times4$位的动态$RAM$芯片，刷新周期为$2ms$，若其内部结构排列成$64\times64$形式，且存取周期为$0.1\mu...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/3-instruction-system-ex/" title="计算机组成原理-概述-指令系统"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-概述-指令系统</div></div><div class="info-2"><div class="info-item-1">指令系统习题指令格式操作码例题 一个计算机系统采用$32$位单字长指令，地址码为$12$位，若定义了$250$条二地址指令，则还可以有()条单地址指令。 $A.4K$ $B.8K$ $C.16K$ $D.24K$ 解：$D$。地址码为$12$位，二地址指令的操作码长度为$32-12-12&#x3D;8$位，已定义了$250$条二地址指令，$2^8-250&#x3D;6$，所以上一层多出了六种地址给单地址指令，即可以设计出单地址指令$6×2^{12}&#x3D;24K$条。 例题...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/3-instruction-system/" title="计算机组成原理-指令系统"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-指令系统</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/15/Computer-Organization/4-central-processing-unit/" title="计算机组成原理-中央处理器"><img class="cover" src="/image/loginBackground1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-15</div><div class="info-item-2">计算机组成原理-中央处理器</div></div><div class="info-2"><div class="info-item-1">中央处理器即$CPU$，为最难的一章。 CPU基本概念CPU功能CPU总功能 指令控制。完成取指令、分析指令和执行指令的操作，即程序的顺序控制。 操作控制。一条指令的功能往往是由若干操作信号的组合来实现的。$CPU$管理并产生由内存取出的每条指令的操作信号，把各种操作信号送往相应的部件，从而控制这些部件按指令的要求进行动作。 时间控制。对各种操作加以时间上的控制。时间控制要为每条指令按时间顺序提供应有的控制信号。 数据加工。对数据进行算术和逻辑运算。 中断处理。对计算机运行过程中出现的异常情况和特殊请求进行处理。  运算器功能 对数据进行加工。 主要部件是$ALU$和$ACC$。  控制器功能协调并控制计算机各部件执行程序的指令序列，基本功能包括取指令、分析指令、执行指令：  取指令： 自动形成指令地址。 自动发出取指令的命令。 $(PC)+1\rightarrow...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/image/IMG_2189.JPG" onerror="this.onerror=null;this.src='/image/404.png'" alt="avatar"/></div><div class="author-info-name">Justyn</div><div class="author-info-description">###Made in China.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">57</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">33</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Justtyn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Justtyn" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:togjustyn@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my Blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.</span> <span class="toc-text">汇编程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">运行流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E7%BB%84%E6%88%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">汇编语言组成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8086CPU"><span class="toc-number">1.2.</span> <span class="toc-text">8086CPU</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80"><span class="toc-number">1.2.2.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">工作流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.</span> <span class="toc-text">汇编指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.1.</span> <span class="toc-text">数据传输指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83"><span class="toc-number">1.4.</span> <span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.4.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%82%E8%BD%BD"><span class="toc-number">1.4.2.</span> <span class="toc-text">挂载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEBUG"><span class="toc-number">1.4.3.</span> <span class="toc-text">DEBUG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.1.</span> <span class="toc-text">数据操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.2.</span> <span class="toc-text">字操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.3.</span> <span class="toc-text">段操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.4.</span> <span class="toc-text">栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E6%AE%B5%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.5.</span> <span class="toc-text">栈段操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%AE%9A%E4%B9%89"><span class="toc-number">1.6.</span> <span class="toc-text">程序定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%AE%B5"><span class="toc-number">1.6.1.</span> <span class="toc-text">定义段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%A1%86%E6%9E%B6"><span class="toc-number">1.6.2.</span> <span class="toc-text">程序框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%87%E8%AE%BE"><span class="toc-number">1.6.3.</span> <span class="toc-text">假设</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%BF%94%E5%9B%9E"><span class="toc-number">1.6.4.</span> <span class="toc-text">程序返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF"><span class="toc-number">1.6.5.</span> <span class="toc-text">错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91"><span class="toc-number">1.6.6.</span> <span class="toc-text">编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">1.6.7.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.6.8.</span> <span class="toc-text">连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C"><span class="toc-number">1.6.9.</span> <span class="toc-text">运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E4%BD%BF%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">高级使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BX"><span class="toc-number">1.7.1.</span> <span class="toc-text">[BX]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X"><span class="toc-number">1.7.2.</span> <span class="toc-text">(X)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LOOP"><span class="toc-number">1.7.3.</span> <span class="toc-text">LOOP</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%AE%B5%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.8.</span> <span class="toc-text">多段程序</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/1-physical-layer-ex/" title="计算机网络-物理层-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-物理层-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/1-physical-layer-ex/" title="计算机网络-物理层-习题">计算机网络-物理层-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/0-summary-ex/" title="计算机网络-概述-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-概述-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/0-summary-ex/" title="计算机网络-概述-习题">计算机网络-概述-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/0-summary/" title="计算机网络-概述"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-概述"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/0-summary/" title="计算机网络-概述">计算机网络-概述</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/1-physical-layer/" title="计算机网络-物理层"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-物理层"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/1-physical-layer/" title="计算机网络-物理层">计算机网络-物理层</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/15/Computer-Network/4-transport-layer-ex/" title="计算机网络-传输层-习题"><img src="/image/loginBackground1.jpg" onerror="this.onerror=null;this.src='/image/404.png'" alt="计算机网络-传输层-习题"/></a><div class="content"><a class="title" href="/2025/02/15/Computer-Network/4-transport-layer-ex/" title="计算机网络-传输层-习题">计算机网络-传输层-习题</a><time datetime="2025-02-14T16:00:00.000Z" title="发表于 2025-02-15 00:00:00">2025-02-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/image/loginBackground1.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2025 By Justyn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Hi,  welcome  to  my  <a href="https://justtyn.github.io/">  Blog</a>!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
